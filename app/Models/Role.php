@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    // adding mass assignment
+    // allowing insertion by name
+    protected $fillable = [
+        'name'
+    ];
 }
