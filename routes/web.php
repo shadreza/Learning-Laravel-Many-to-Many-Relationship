@@ -130,3 +130,22 @@ Route::get('attach/{user_id}/{role_id}', function ($user_id, $role_id) {
 });
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Detaching
+|--------------------------------------------------------------------------
+*/
+
+// all the role and user related row in the pivot table will be gone
+Route::get('detach/{user_id}/{role_id}', function ($user_id, $role_id) {
+    $user = User::findOrFail($user_id);
+    $user->roles()->detach($role_id);
+
+    // without passing the $role_id in the detach parameter all the data of the pivot table will be gone
+    // $user->roles()->detach($role_id);
+
+});
+
+
