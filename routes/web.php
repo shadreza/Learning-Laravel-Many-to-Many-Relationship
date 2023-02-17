@@ -91,3 +91,22 @@ Route::get('update-role/{user_id}', function ($user_id) {
         }
     }
 });
+
+
+
+
+// delete
+
+
+// result -> delete the roles table
+
+Route::get('delete/{user_id}/{role_id}', function ($user_id, $role_id) {
+    $user = User::findOrFail($user_id);
+
+    // this will delete the entire database or roles;
+    // $user->roles()->delete();
+
+    foreach ($user->roles as $role) {
+        $role->whereId($role_id)->delete();
+    }
+});
