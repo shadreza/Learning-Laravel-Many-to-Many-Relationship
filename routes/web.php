@@ -110,3 +110,23 @@ Route::get('delete/{user_id}/{role_id}', function ($user_id, $role_id) {
         $role->whereId($role_id)->delete();
     }
 });
+
+
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Attaching
+|--------------------------------------------------------------------------
+*/
+
+// in the role_user pivot table we are attaching the user with the given role
+// if the same url is executed again the attachment will be redundantly added -> duplication
+Route::get('attach/{user_id}/{role_id}', function ($user_id, $role_id) {
+    $user = User::findOrFail($user_id);
+    $user->roles()->attach($role_id);
+});
+
+
