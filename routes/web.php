@@ -48,3 +48,25 @@ Route::get('insert-user/{role_id}', function ($role_id) {
     $user = new User(['name' => 'New Name', 'email' => 'New Email', 'password' => 'New Password']);
     $role->users()->save($user);
 });
+
+
+
+// read
+
+
+// result -> read the role of a user by passed  user_id
+Route::get('read-role/{user_id}', function ($user_id) {
+    $user = User::findOrFail($user_id);
+    foreach ($user->roles as $role) {
+        echo $role->name . '<br>';
+    }
+});
+
+
+// result -> read the user of a role by passed  role_id
+Route::get('read-user/{role_id}', function ($role_id) {
+    $role = Role::findOrFail($role_id);
+    foreach ($role->users as $user) {
+        echo $user->name . '<br>';
+    }
+});
