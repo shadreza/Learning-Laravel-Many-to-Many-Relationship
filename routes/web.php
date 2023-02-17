@@ -70,3 +70,24 @@ Route::get('read-user/{role_id}', function ($role_id) {
         echo $user->name . '<br>';
     }
 });
+
+
+
+
+// update
+
+
+// result -> update the role of a user by passed user_id
+
+Route::get('update-role/{user_id}', function ($user_id) {
+    $user = User::findOrFail($user_id);
+    if ($user->has('roles')) {
+        foreach ($user->roles as $role) {
+            if ($role->name == 'subscriber') {
+                // $role->name = strtoupper($user->name);
+                $role->name = 'user';
+                $role->save();
+            }
+        }
+    }
+});
