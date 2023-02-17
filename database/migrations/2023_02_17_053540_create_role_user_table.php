@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('role_user', function (Blueprint $table) {
             $table->id();
+            $table->integer('role_id')->unsigned()->nullable()->index();
+            $table->integer('user_id')->unsigned()->nullable()->index();
             $table->timestamps();
         });
     }
