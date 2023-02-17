@@ -149,3 +149,16 @@ Route::get('detach/{user_id}/{role_id}', function ($user_id, $role_id) {
 });
 
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Syncing
+|--------------------------------------------------------------------------
+*/
+
+Route::get('sync/{user_id}/{role_id}', function ($user_id, $role_id) {
+    $user = User::findOrFail($user_id);
+    // have to pass a array of roles in the sync function
+    $user->roles()->sync([$role_id, 7]);
+});
