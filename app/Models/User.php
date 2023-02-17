@@ -43,6 +43,9 @@ class User extends Authenticatable
     ];
 
     // adding the many to many relationship
+    // this function will be called by the User model
+    // roles table and pivot table will be processed here
+    // for create -> a new role will be added and the pivot table will be altered
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role');
